@@ -1,0 +1,10 @@
+<div id="search-component">
+  <h4>Intent Search</h4>
+  <input #searchBox id="search-box" (keyup)="search(searchBox.value)" />
+  <div>
+    <div *ngFor="let intent of intents | async"
+         (click)="gotoDetail(intent)" class="search-result" >
+      {{intent.name}}
+    </div>
+  </div>
+</div>
