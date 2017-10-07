@@ -1,9 +1,0 @@
-<h3>All Intents</h3>
-<div class="grid grid-pad">
-  <a *ngFor="let intent of intents"  [routerLink]="['/detail', intent.id]"  class="col-1-4">
-    <div class="module intent">
-      <h4>{{intent.name}}</h4>
-    </div>
-  </a>
-</div>
-<intent-search></intent-search>
