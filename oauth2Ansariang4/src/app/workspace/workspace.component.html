@@ -1,0 +1,193 @@
+<div class="container">
+  <div class="row">
+    <div class="col-xs-12">
+        <div class="margin-20">
+        <h4>Dialog</h4>
+      </div>
+      <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm)">
+          <div class="form-group col-xs-12">
+              <label>Dialog Name</label>
+              <input type="text" class="form-control" formControlName="Dialogname">
+              <small *ngIf="!myForm.controls.Dialogname.valid" class="text-danger">
+                  Dialog name is required.
+                </small>
+            </div>
+        <div class="form-group col-xs-12">
+          <label>Intent Name</label>
+          <input type="text" class="form-control" formControlName="Intentname">
+            <small *ngIf="!myForm.controls.Intentname.valid" class="text-danger">
+              Intent name is required.
+            </small>
+        </div>  
+        <!--Slot Question-->
+
+        <div class="margin-20">
+            <h4>Slot Filling</h4>
+          </div>
+        <div formArrayName="Slotquestions">
+      
+          <div *ngFor="let Slotquestion of myForm.controls.Slotquestions.controls; let i=index" class="">
+            <div class="panel-body" [formGroupName]="i">
+              <div class="entry input-group col-xs-6">
+               
+                <input type="text" class="form-control" formControlName="slotquestion">
+                 <span class="input-group-btn">
+                  <button class="btn btn-success btn-add" (click)="addSlotquestion()"  type="button">
+                      <span class="glyphicon glyphicon-plus"></span> 
+                  </button>
+                  
+              </span>
+              <span class="input-group-btn">
+                  <button class="btn btn-danger btn-remove" *ngIf="myForm.controls.Slotquestions.controls.length > 1" (click)="removeSlotquestion(i)"  type="button">
+                      <!-- <span class="glyphicon glyphicon-minus" ></span> -->
+                      <span class="glyphicon btn-glyphicon glyphicon-trash" ></span>
+                      
+                  </button>
+              </span>
+            </div>
+          </div>
+        </div>
+        </div>
+<div class = "margin-20">
+  <h4> Action Details</h4>
+</div>
+<!-- Action -->
+<!-- <div class="container"> -->
+    
+    <table id="myTable" class=" table order-list">
+   <thead>
+        <!-- <tr>
+            <td class="col-sm-1" >REQUIRED</td>
+            <td class="col-sm-2">PARAMETER NAME</td>
+            <td class="col-sm-2">ENTITY</td>
+            <td class="col-sm-2">VALUE</td>
+            <td class="col-sm-3">PROMPTS</td>
+        </tr> -->
+    </thead> 
+    <tbody>
+        <div formArrayName="SlotquestionsAction">
+          
+        <div *ngFor="let SlotquestionAction of myForm.controls.SlotquestionsAction.controls; let j=index" class="">
+            
+          <tr [formGroupName]="j">
+            <td class="col-sm-1">
+                <input type="checkbox" class="form-control" formControlName="txtrequired" />
+            </td>
+            <td class="col-sm-2">
+                <input type="text" placeholder="PARAMETER NAME"   class="form-control"  formControlName="txtparameter"/>
+            </td>
+            <td class="col-sm-2">
+                <input type="text"  placeholder="ENTITY" class="form-control"  formControlName="txtentity"/>
+            </td>
+            <td class="col-sm-2">
+                <input type="text" placeholder="VALUE" class="form-control"  formControlName="txtvalue"/>
+            </td>
+            <td class="col-sm-3">
+                <input type="text" placeholder="PROMPT" class="form-control"  formControlName="txtprompt" (click)="showDialog = !showDialog"/>
+            </td>
+            <td class="col-sm-2"><a class="btn btn-danger btn-remove glyphicon btn-glyphicon glyphicon-trash" *ngIf="myForm.controls.SlotquestionsAction.controls.length > 1" (click)="removeSlotquestionAction(j)"  type="button" ></a>
+            </td>
+        </tr>
+           
+      </div>
+    </div>
+    </tbody>
+    <tfoot>
+        <tr>
+            <td>
+                <div class="margin-20">
+                    <button type="button" class="btn btn-primary pull-left" (click)="addSlotquestionAction()" >+ New parameter</button>
+                  </div>
+              
+            </td>
+        </tr>
+        <tr>
+        </tr>
+    </tfoot>
+</table> 
+<!--Response-->
+<div class="form-group col-xs-12">
+    <label>Response</label>
+    <input type="text" class="form-control" formControlName="Response">
+  </div>
+<!--Save Button-->
+        <div class="margin-20">
+          <button type="submit" class="btn btn-primary pull-right" [disabled]="!myForm.valid">Save</button>
+        </div>
+        <div class="clearfix"></div>
+
+        <div class="margin-20">
+          <div>Dialog details:-</div>
+          <pre>Is Dialog valid?: <br>{{myForm.valid | json}}</pre>
+          <pre>Dialog value in json: <br>{{myForm.value | json}}</pre>
+        </div>
+
+        <app-prompts [(visible)]="showDialog">
+                <h3>Prompts for</h3>
+                
+                    <table>
+                        <thead>
+                            <tr>
+                      <td class="col-xs-5"> NAME </td>
+                      <td class="col-xs-5"> ENTITY </td>
+                      <td class="col-xs-6"> VALUE </td>
+                  </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                  <td class="col-xs-5"> NAME </td>
+                                  <td class="col-xs-5"> ENTITY </td>
+                                  <td class="col-xs-6"> VALUE </td>
+                            </tr>
+                        </tbody>
+                </table>
+                <Div class="margin-20">
+                    <h3> Prompts</h3>
+                </Div>
+                
+                      <table id="myTable" class=" table order-list">
+                         
+                              <thead>
+                                 
+                               </thead> 
+                               <tbody>
+                                   <div formArrayName="SlotquestionsActionPrompt">
+                                     
+                                   <div *ngFor="let SlotquestionActionPrompt of myForm.controls.SlotquestionsActionPrompt.controls; let k=index" class="">
+                                       
+                                     <tr [formGroupName]="k">
+                                       
+                                       <td class="col-sm-6">
+                                           <input type="text" placeholder="PROMPTS" class="form-control"  formControlName="prompttxtprompt"/>
+                                       </td>
+                                       <td class="col-sm-2"><a class="btn btn-danger btn-remove glyphicon btn-glyphicon glyphicon-trash" *ngIf="myForm.controls.SlotquestionsActionPrompt.controls.length > 1" (click)="removeSlotquestionActionPrompt(k)"  type="button" ></a>
+                                       </td>
+                                   </tr>
+                                      
+                                 </div>
+                               </div>
+                               </tbody>
+                               <tfoot>
+                                   <tr>
+                                       <td>
+                                           <div class="margin-20">
+                                               <button type="button" class="btn btn-primary pull-left" (click)="addSlotquestionActionPrompt()" >+ New parameter</button>
+                                             </div>
+                                         
+                                       </td>
+                                   </tr>
+                                   <tr>
+                                   </tr>
+                               </tfoot>
+                           </table> 
+                      <button type="submit" class="btn btn-primary pull-right">Save</button>
+                      <button (click)="showDialog = !showDialog" class="btn">Close</button>
+                  
+                
+              </app-prompts>
+                
+            </form>
+    </div>  
+  </div>
+</div>
+<!-- <button (click)="showDialog = !showDialog" class="btn">Open</button> -->
