@@ -7,14 +7,16 @@
       <form [formGroup]="myForm" novalidate (ngSubmit)="save(myForm)">
           <div class="form-group col-xs-12">
               <label>Dialog Name</label>
-              <input type="text" class="form-control" formControlName="Dialogname">
+              <input type="tags" class="form-control" formControlName="Dialogname">
               <small *ngIf="!myForm.controls.Dialogname.valid" class="text-danger">
                   Dialog name is required.
                 </small>
             </div>
         <div class="form-group col-xs-12">
           <label>Intent Name</label>
-          <input type="text" class="form-control" formControlName="Intentname">
+          <div>
+          <rl-tag-input > </rl-tag-input>
+          </div>
             <small *ngIf="!myForm.controls.Intentname.valid" class="text-danger">
               Intent name is required.
             </small>
@@ -185,7 +187,7 @@
                   
                 
               </app-prompts>
-                
+              
             </form>
     </div>  
   </div>

@@ -6,6 +6,7 @@ import {AddclientComponent} from './addclient/addclient.component';
 import {BookComponent} from './book/book.component';
 import {WorkspaceComponent} from './workspace/workspace.component';
 import {PromptsComponent} from './prompts/prompts.component';
+import {TagInputComponent} from './entitysynonym/entitysynonym.component';
 import {AuthManager} from './authmanager';
  
 
@@ -18,6 +19,7 @@ export const appRoutes: Routes = [
     {path: 'books', component:BookComponent},
     {path: 'workspace', component:WorkspaceComponent},
     {path: 'prompts', component:PromptsComponent},
+    {path: 'tag', component:TagInputComponent}
     
 ]
 

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormArray, FormBuilder, Validators,FormControl } from '@angular/forms';
 import {NgbModal, ModalDismissReasons} from '@ng-bootstrap/ng-bootstrap';
+import { TagInputComponent } from '../entitysynonym/entitysynonym.component';
 import { PromptsComponent } from '../prompts/prompts.component';
 import { Workspace } from './Workspace.interface';
 import {Observable} from 'rxjs/Observable';
